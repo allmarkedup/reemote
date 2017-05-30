@@ -96,6 +96,7 @@ class SecLibGateway implements GatewayInterface {
      */
     public function run($command, callable $callback = null)
     {
+        $this->getConnection()->setTimeout(120);
         return $this->getConnection()->exec($command, $callback);
     }
 
@@ -142,7 +143,7 @@ class SecLibGateway implements GatewayInterface {
      */
     public function put($local, $remote)
     {
-        $this->getConnection()->put($remote, $local, NET_SFTP_LOCAL_FILE);
+        $this->getConnection()->put($remote, $local, SFTP::SOURCE_LOCAL_FILE);
     }
 
     /**
